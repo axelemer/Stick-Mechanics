@@ -7,15 +7,19 @@ public class VehicleMovement : MonoBehaviour
 {
     public SphereCollider sphere;
     public Rigidbody SphereRb;
+    public Transform head;
+    public Transform canyon;
+    public float canyonOffset;
+    public Transform aimDir;
     public List<ParticleSystem> driftParticles;
 
     public float angleToDrift;
+    public float headRotation;
     public float rotationSpeed;
     public float changeRotationSpeed;
     public float speed;
     public float raycastLenght;
     public Transform rayP1;
-    private Vector3 dir;
 
     void Start()
     {
@@ -40,11 +44,20 @@ public class VehicleMovement : MonoBehaviour
                                     changeRotationSpeed * Time.deltaTime);
 
         Drift();
-
-        //transform.rotation = Quaternion.Euler(surfaceRotation.eulerAngles.x, transform.rotation.eulerAngles.y, surfaceRotation.eulerAngles.z);
-
-        dir = new Vector3(0, transform.rotation.eulerAngles.y, 0);
+        
         transform.Rotate(transform.up, Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
+
+        RotateHead();
+    }
+
+    private void RotateHead()
+    {
+        //Head
+        Quaternion headAim = Quaternion.FromToRotation(head.forward, aimDir.forward) * head.localRotation;
+        head.localRotation = Quaternion.Slerp(head.localRotation, Quaternion.Euler(0, headAim.eulerAngles.y, 0), headRotation * Time.deltaTime);
+
+        //Canyon
+        canyon.localRotation = Quaternion.Slerp(canyon.localRotation, Quaternion.Euler(aimDir.rotation.eulerAngles.x - canyonOffset, 0, 0), headRotation * Time.deltaTime);
     }
 
     private void Drift()
@@ -75,8 +88,6 @@ public class VehicleMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + dir * 5);
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, SphereRb.velocity * 5);
         Gizmos.color = Color.red;

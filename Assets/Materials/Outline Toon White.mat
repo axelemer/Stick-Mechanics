@@ -43,7 +43,7 @@ Material:
     - _ASEOutlineWidth: 0.09
     - _FresnelBias: 0.1
     - _FresnelBias1: 0
-    - _FresnelPower: 5
+    - _FresnelPower: 2
     - _FresnelPower1: 5
     - _FresnelScale: 1
     - _FresnelScale1: 1
