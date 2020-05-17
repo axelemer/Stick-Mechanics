@@ -24,6 +24,7 @@ public class CameraFollow : MonoBehaviour
     public float smoothY;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
+    public float rotLerp;
 
 
     // Use this for initialization
@@ -57,7 +58,7 @@ public class CameraFollow : MonoBehaviour
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-        transform.rotation = localRotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, rotLerp * Time.deltaTime);
 
 
     }
