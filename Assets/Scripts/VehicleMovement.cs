@@ -7,10 +7,12 @@ public class VehicleMovement : MonoBehaviour
 {
     public SphereCollider sphere;
     public Rigidbody SphereRb;
+    public GetNormalSurface getNormal;
     public Transform head;
     public Transform canyon;
     public float canyonOffset;
     public Transform aimDir;
+    public Transform model;
     public List<ParticleSystem> driftParticles;
 
     public float angleToDrift;
@@ -21,33 +23,36 @@ public class VehicleMovement : MonoBehaviour
     public float raycastLenght;
     public Transform rayP1;
 
-    void Start()
+    void Update()
     {
+        BodyRotation();
 
+        Drift();        
+
+        RotateHead();
     }
 
-    void Update()
+
+
+    private void BodyRotation()
     {
         RaycastHit hit;
         Quaternion surfaceRotation = new Quaternion();
         LayerMask floorMask = LayerMask.GetMask("Floor");
 
+        surfaceRotation = Quaternion.FromToRotation(transform.up, getNormal.normalSurface) * transform.rotation;
         if (Physics.Raycast(rayP1.position, rayP1.position - rayP1.up * raycastLenght, out hit, 4f, floorMask))
         {
             if (hit.collider)
             {
-                surfaceRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+                //surfaceRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             }
         }
         transform.rotation = Quaternion.Lerp(transform.rotation,
                                 Quaternion.Euler(surfaceRotation.eulerAngles.x, transform.rotation.eulerAngles.y, surfaceRotation.eulerAngles.z),
                                     changeRotationSpeed * Time.deltaTime);
 
-        Drift();
-        
         transform.Rotate(transform.up, Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
-
-        RotateHead();
     }
 
     private void RotateHead()
@@ -83,7 +88,7 @@ public class VehicleMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Torque gira en Vector Right, dirección hacia Forward
-        SphereRb.AddTorque(this.transform.right * speed * Input.GetAxis("Vertical") * Time.fixedDeltaTime, ForceMode.Impulse);
+        this.SphereRb.AddTorque(this.transform.right * speed * Input.GetAxis("Vertical") * Time.fixedDeltaTime, ForceMode.Impulse);
     }
 
     private void OnDrawGizmos()

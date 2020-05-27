@@ -15,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             Attack();
         }
