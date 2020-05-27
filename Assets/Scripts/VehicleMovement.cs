@@ -36,18 +36,18 @@ public class VehicleMovement : MonoBehaviour
 
     private void BodyRotation()
     {
-        RaycastHit hit;
         Quaternion surfaceRotation = new Quaternion();
-        LayerMask floorMask = LayerMask.GetMask("Floor");
-
         surfaceRotation = Quaternion.FromToRotation(transform.up, getNormal.normalSurface) * transform.rotation;
-        if (Physics.Raycast(rayP1.position, rayP1.position - rayP1.up * raycastLenght, out hit, 4f, floorMask))
-        {
-            if (hit.collider)
-            {
-                //surfaceRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            }
-        }
+
+        //RaycastHit hit;
+        //LayerMask floorMask = LayerMask.GetMask("Floor");
+        //if (Physics.Raycast(rayP1.position, rayP1.position - rayP1.up * raycastLenght, out hit, 4f, floorMask))
+        //{
+        //    if (hit.collider)
+        //    {
+        //        surfaceRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        //    }
+        //}
         transform.rotation = Quaternion.Lerp(transform.rotation,
                                 Quaternion.Euler(surfaceRotation.eulerAngles.x, transform.rotation.eulerAngles.y, surfaceRotation.eulerAngles.z),
                                     changeRotationSpeed * Time.deltaTime);
