@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
     public GameObject bullet;
     public Transform shootPoint;
+    public float shakeForce;
+    public float shakeTime;
 
-    void Start()
-    {
-        
-    }
-    
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
@@ -24,6 +18,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void Attack()
     {
         Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-        Shake.instance.ShakeCamera(0.05f, 0.05f);
+        Shake.instance.ShakeCamera(shakeForce, shakeTime);
     }
 }

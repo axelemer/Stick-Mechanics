@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water
+  m_Shader: {fileID: 4800000, guid: 971fb115d74da024fab1bc94fd9509e0, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Flowmap:
+        m_Texture: {fileID: 2800000, guid: d7cedae225cd81645b5a53f96a1de180, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flowmap1:
+        m_Texture: {fileID: 2800000, guid: d7cedae225cd81645b5a53f96a1de180, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Foam:
+        m_Texture: {fileID: 2800000, guid: 946b1436517b1ba4890420f0e5f81e1b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Foam1:
+        m_Texture: {fileID: 2800000, guid: 946b1436517b1ba4890420f0e5f81e1b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Water:
+        m_Texture: {fileID: 2800000, guid: 27da34216d141f645ac646fc5b77838a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Water1:
+        m_Texture: {fileID: 2800000, guid: 27da34216d141f645ac646fc5b77838a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DepthDistance: -0.08
+    - _DepthDistance1: -0.08
+    - _DepthFallOff: 7.9
+    - _DepthFallOff1: 7.9
+    - _FlowmapIntensity: 0.15
+    - _FlowmapIntensity1: 0.15
+    - _Mainopacity: 1
+    - _Mainopacity1: 1
+    - _SpeedX: 0.05
+    - _SpeedX1: 0.05
+    - _SpeedY: 0.04
+    - _SpeedY1: 0.04
+    - _Tiling: 6
+    - _Tiling1: 6
+    - __dirty: 0
+    m_Colors:
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0}

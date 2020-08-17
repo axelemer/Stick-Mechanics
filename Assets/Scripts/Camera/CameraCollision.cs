@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraCollision : MonoBehaviour
 {
@@ -13,17 +11,14 @@ public class CameraCollision : MonoBehaviour
     public float distance;
     public LayerMask collisionLayer;
 
-    // Use this for initialization
-    void Awake()
+    void Start()
     {
         dollyDir = transform.localPosition.normalized;
         distance = transform.localPosition.magnitude;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         Vector3 desiredCameraPos = transform.parent.TransformPoint(dollyDir * maxDistance);
         RaycastHit hit;
 
@@ -35,7 +30,6 @@ public class CameraCollision : MonoBehaviour
         {
             distance = maxDistance;
         }
-
         transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
     }
 }

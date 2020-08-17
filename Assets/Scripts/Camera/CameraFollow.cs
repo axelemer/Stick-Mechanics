@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
     public bool lockMouse;
     public float CameraMoveSpeed = 120.0f;
     public GameObject CameraFollowObj;
@@ -33,17 +30,14 @@ public class CameraFollow : MonoBehaviour
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
-        if (lockMouse)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         // We setup the rotation of the sticks here
         //float inputX = Input.GetAxis ("RightStickHorizontal");
         //float inputZ = Input.GetAxis ("RightStickVertical");
@@ -57,10 +51,25 @@ public class CameraFollow : MonoBehaviour
 
         rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 
-        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, rotLerp * Time.deltaTime);
-
-
+        if (!lockMouse)
+        {
+            Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, localRotation, rotLerp * Time.deltaTime);
+        }
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            lockMouse = !lockMouse;
+            if (!lockMouse)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
     }
 
     void LateUpdate()
@@ -70,10 +79,10 @@ public class CameraFollow : MonoBehaviour
 
     void CameraUpdater()
     {
-        // set the target object to follow
+        // Set the target object to follow
         Transform target = CameraFollowObj.transform;
 
-        //move towards the game object that is the target
+        // Move towards the game object that is the target
         float step = CameraMoveSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
     }

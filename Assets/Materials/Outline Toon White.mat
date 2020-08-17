@@ -49,12 +49,12 @@ Material:
     - _FresnelScale1: 1
     - _NormalScale: 0.5
     - _NormalScale1: 0.5
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _FresnelTint: {r: 1, g: 1, b: 1, a: 0}
     - _FresnelTint1: {r: 0, g: 0.8818593, b: 1, a: 0}
-    - _RampTint: {r: 0.2830188, g: 0.2830188, b: 0.2830188, a: 0}
+    - _RampTint: {r: 0.28301877, g: 0.28301877, b: 0.28301877, a: 0}
     - _RampTint1: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 0.059184756, g: 0.08406359, b: 0.09433961, a: 0}
     - _Tint1: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0}
